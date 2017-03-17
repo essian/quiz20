@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Quiz 2.0</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_quiz">QuizActivity</string>
+
+    <string name="title">The Sewing Quiz</string>
+    <string name="sub_title">There are 8 questions. Good Luck!</string>
+
+
+    <!--Questions-->
+    <string name="questionOverlockerThreads">How many needles does a 4-thread overlocker or serger stitch use?</string>
+    <string name="questionBasting">True or False:  Basting stitches are the longest straight stitch, and are temporary stitches used to hold a sewing project together.</string>
+    <string name="questionElectricMachine">Which company sold the first electric sewing machine?"</string>
+    <string name="questionNeedleEye">Where is the eye of a sewing machine needle located?</string>
+    <string name="questionTimGunn">Tim Gunn from Project Runway is most famous for what phrase, frequently uttered to contestants on the show whose designs are struggling?</string>
+    <string name="questionTreadle">The picture below is of what TYPE of sewing machine (not brand, but type)?</string>
+    <string name="questionBig4">Which of these make up the Big 4 sewing pattern companies (the ones that are available at the big box stores, not independent pattern brands).</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+
+    <!--T/F Text-->
+    <string name="true_radio">True</string>
+    <string name="false_radio">False</string>
+
+    <!--Eye Text-->
+    <string name="near_the_tip">Near the tip</string>
+    <string name="it_has_no_eye">It has no eye</string>
+    <string name="near_the_end">Near the end</string>
+
+    <!--Pattern Companies-->
+    <string name="simplicity">Simplicity</string>
+    <string name="burdastyle">BurdaStyle</string>
+    <string name="kwiksew">KwikSew</string>
+    <string name="vogue">Vogue</string>
+    <string name="mccalls">McCalls</string>
+    <string name="new_look">New Look</string>
+    <string name="burda">Burda</string>
+    <string name="butterick">Butterick</string>
+
+    <!--Image content descriptions-->
+    <string name="treadle_description">Foot powered sewing machine</string>
+    <string name="main_logo">Sewing machine image</string>
+
+    <!--Button Text-->
+    <string name="submit">Submit</string>
+    <string name="start_again">Reset</string>
+    <string name="final_greeting">That\'s all the questions!</string>
+    <string name="invalid_needle_count">You cannot have less than zero needles</string>
+    <string name="tim_gunn_answer">make it work</string>
+
+    <!--Dialog Text-->
+    <string name="save">Save</string>
+    <string name="retry">Retry</string>
+    <string name="no_high_scores">There are no high scores yet</string>
+    <string name="database_unavailable">Database unavailable</string>
+    <string name="electric_machine_answer">singer</string>
+    <plurals name="point">
+        <item quantity="one">point</item>
+        <item quantity="other">points</item>
+    </plurals>
+</resources>
