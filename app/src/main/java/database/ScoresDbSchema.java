@@ -7,7 +7,7 @@ package database;
 public class ScoresDbSchema {
 
     public static final class ScoreTable {
-        public static final String NAME = "scores";
+        public static final String NAME = "score";
 
         public static final class Cols {
             public static final String NAME = "name";

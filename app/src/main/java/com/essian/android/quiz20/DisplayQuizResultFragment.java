@@ -2,11 +2,9 @@ package com.essian.android.quiz20;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -58,12 +56,13 @@ public class DisplayQuizResultFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                SQLiteOpenHelper scoreDbHelper = new ScoreDbHelper(getActivity());
+                                ScoreDbHelper scoreDbHelper = new ScoreDbHelper(getActivity());
                                 SQLiteDatabase db = scoreDbHelper.getReadableDatabase();
-                                ContentValues values = new ContentValues();
-                                values.put("NAME", name);
-                                values.put("SCORE", score);
-                                db.insert("SCORE", null, values);
+                                scoreDbHelper.insertScore(db, name, score);
+//                                ContentValues values = new ContentValues();
+//                                values.put("NAME", name);
+//                                values.put("SCORE", score);
+//                                db.insert("SCORE", null, values);
                                 Intent intent = new Intent(getActivity(), MainActivity.class);
                                 startActivity(intent);
                             }
