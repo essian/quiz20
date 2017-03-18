@@ -31,49 +31,48 @@ import static com.essian.android.quiz20.R.id.treadle;
 public class QuizFragment extends Fragment {
 
     private static final String DIALOG_SCORE = "DialogScore";
+    private static final String TIM_GUNN_CORRECT_ANSWER = "make it work";
+    private static final String TREADLE_CORRECT_ANSWER = "treadle";
+    private static final String OVERLOCKER_THREADS_CORRECT_ANSWER = "2";
+    private static final String ELECTRIC_MACHINE_CORRECT_ANSWER = "singer";
     private final String STATE_NEEDLE_COUNT = "needleCount";
-    int needle_count = 0;
-    int score = 0;
+    private int needle_count = 0;
+    private int score = 0;
 
     private EditText mNameEditText;
     private String mName;
 
-    private TextView timGunnQuestionView;
-    private String timGunnCorrectAnswer = "make it work";
+    private TextView mTimGunnQuestionView;
     private EditText mTimGunnEditText;
 
-    private TextView treadleQuestionView;
-    private String treadleCorrectAnswer = "treadle";
+    private TextView mTreadleQuestionView;
     private EditText mTreadleEditText;
 
     private LinearLayout mBig4CheckBoxes;
-    private TextView big4QuestionView;
-    private CheckBox simplicity;
-    private CheckBox vogue;
-    private CheckBox butterick;
-    private CheckBox mccalls;
-    private CheckBox burdastyle;
-    private CheckBox kwiksew;
-    private CheckBox burda;
-    private CheckBox newlook;
+    private TextView mBig4QuestionView;
+    private CheckBox mSimplicity;
+    private CheckBox mVogue;
+    private CheckBox mButterick;
+    private CheckBox mMccalls;
+    private CheckBox mBurdastyle;
+    private CheckBox mKwiksew;
+    private CheckBox mBurda;
+    private CheckBox mNewlook;
 
-    private TextView needleEyeQuestion;
-    private RadioButton needleEyeAnswer;
+    private TextView mNeedleEyeQuestion;
+    private RadioButton mNeedleEyeAnswer;
     private RadioGroup mNeedleEyeRg;
 
-    private TextView overlockerThreadsQuestionView;
-    private TextView overlockerThreadsAnswerView;
-    private static final String overlockerThreadsCorrectAnswer = "2";
+    private TextView mOverlockerThreadsQuestionView;
+    private TextView mOverlockerThreadsAnswerView;
 
-    private TextView bastingQuestionView;
-    private RadioButton bastingCorrectAnswer;
+    private TextView mBastingQuestionView;
+    private RadioButton mBastingCorrectAnswer;
     private RadioGroup mBastingRg;
 
-    private TextView electricMachineQuestionView;
-    private static final String electricMachineCorrectAnswer = "singer";
+    private TextView mElectricMachineQuestionView;
     private EditText mElectricMachineEditText;
 
-    private TextView needle_quantity_view;
     private Button mScoreButton;
     private Button mIncrementNeedles;
     private Button mDecrementNeedles;
@@ -93,21 +92,33 @@ public class QuizFragment extends Fragment {
         }
     }
 
+    /**
+     * Sets up options menu and creates fragment
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
+    /**
+     * Creates view for fragment and finds necessary views, sets onClickListeners
+     *
+     * @param inflater           LayoutInflater that inflates view
+     * @param container          ViewGroup for fragment
+     * @param savedInstanceState
+     * @return inflated view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_quiz, container, false);
 
-        overlockerThreadsQuestionView = (TextView) v.findViewById(R.id.questionOverlockerThreads);
-        overlockerThreadsAnswerView = (TextView) v.findViewById(R.id.needle_count);
-
+        mOverlockerThreadsQuestionView = (TextView) v.findViewById(R.id.questionOverlockerThreads);
+        mOverlockerThreadsAnswerView = (TextView) v.findViewById(R.id.needle_count);
         if (savedInstanceState != null) {
             needle_count = savedInstanceState.getInt(STATE_NEEDLE_COUNT);
         } else {
@@ -117,39 +128,28 @@ public class QuizFragment extends Fragment {
         displayNeedleCount();
 
         mNameEditText = (EditText) v.findViewById(R.id.nameEditText);
-
-        needleEyeAnswer = (RadioButton) v.findViewById(R.id.needle_eye_tip);
-        needleEyeQuestion = (TextView) v.findViewById(R.id.needleEye);
+        mNeedleEyeAnswer = (RadioButton) v.findViewById(R.id.needle_eye_tip);
+        mNeedleEyeQuestion = (TextView) v.findViewById(R.id.needleEye);
         mNeedleEyeRg = (RadioGroup) v.findViewById(R.id.radio_group_needle_eye);
-
-        bastingQuestionView = (TextView) v.findViewById(R.id.questionBasting);
-        bastingCorrectAnswer = (RadioButton) v.findViewById(R.id.basting_true);
+        mBastingQuestionView = (TextView) v.findViewById(R.id.questionBasting);
+        mBastingCorrectAnswer = (RadioButton) v.findViewById(R.id.basting_true);
         mBastingRg = (RadioGroup) v.findViewById(R.id.radio_group_basting);
-
-
-        electricMachineQuestionView = (TextView) v.findViewById(R.id.electricMachine);
+        mElectricMachineQuestionView = (TextView) v.findViewById(R.id.electricMachine);
         mElectricMachineEditText = (EditText) v.findViewById(R.id.electric_machine_answer);
-
-        timGunnQuestionView = (TextView) v.findViewById(R.id.timGunn);
-        timGunnCorrectAnswer = getString(R.string.tim_gunn_answer);
+        mTimGunnQuestionView = (TextView) v.findViewById(R.id.timGunn);
         mTimGunnEditText = (EditText) v.findViewById(R.id.tim_gunn_answer);
-
-        treadleQuestionView = (TextView) v.findViewById(treadle);
-        treadleCorrectAnswer = "treadle";
+        mTreadleQuestionView = (TextView) v.findViewById(treadle);
         mTreadleEditText = (EditText) v.findViewById(R.id.treadle_answer);
-
         mBig4CheckBoxes = (LinearLayout) v.findViewById(R.id.big4CheckBoxes);
-        big4QuestionView = (TextView) v.findViewById(R.id.big4);
-        simplicity = (CheckBox) v.findViewById(R.id.simplicity);
-        vogue = (CheckBox) v.findViewById(R.id.vogue);
-        butterick = (CheckBox) v.findViewById(R.id.butterick);
-        mccalls = (CheckBox) v.findViewById(R.id.mccalls);
-        burdastyle = (CheckBox) v.findViewById(R.id.burdastyle);
-        kwiksew = (CheckBox) v.findViewById(R.id.kwiksew);
-        burda = (CheckBox) v.findViewById(R.id.burda);
-        newlook = (CheckBox) v.findViewById(R.id.newlook);
-
-
+        mBig4QuestionView = (TextView) v.findViewById(R.id.big4);
+        mSimplicity = (CheckBox) v.findViewById(R.id.simplicity);
+        mVogue = (CheckBox) v.findViewById(R.id.vogue);
+        mButterick = (CheckBox) v.findViewById(R.id.butterick);
+        mMccalls = (CheckBox) v.findViewById(R.id.mccalls);
+        mBurdastyle = (CheckBox) v.findViewById(R.id.burdastyle);
+        mKwiksew = (CheckBox) v.findViewById(R.id.kwiksew);
+        mBurda = (CheckBox) v.findViewById(R.id.burda);
+        mNewlook = (CheckBox) v.findViewById(R.id.newlook);
         mIncrementNeedles = (Button) v.findViewById(R.id.increment_needles);
         mIncrementNeedles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,13 +190,24 @@ public class QuizFragment extends Fragment {
         return v;
     }
 
-
+    /**
+     * Sets up the options menu
+     *
+     * @param menu     is the menu
+     * @param inflater is an MenuInflater object that is passed in
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_quiz, menu);
     }
 
+    /**
+     * Controls what happens when a menu item is selected
+     *
+     * @param item is the selected item
+     * @return true indicates success
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -260,11 +271,7 @@ public class QuizFragment extends Fragment {
      * This method calculates the user's score, displays it then resets it ready for the app to be rescored.
      */
     public void score() {
-        if (getName() == null || getName().isEmpty()) {
-            mNameEditText.requestFocus();
-            Toast.makeText(getActivity(), "Please enter your name", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        if (!checkName(getName())) { return; };
         scoreQuestionOverlockerThreads();
         scoreQuestionBasting();
         scoreQuestionElectricMachine();
@@ -276,49 +283,68 @@ public class QuizFragment extends Fragment {
         score = 0;
     }
 
-    public String getName() {
+    /**
+     * Gets the user's name
+     *
+     * @return the user's name without unnecessary white space
+     */
+    private String getName() {
         mName = mNameEditText.getText().toString().trim();
         return mName;
+    }
+
+    /**
+     * Checks for valid name
+     * @param name is the user's name
+     * @return boolean indicating if name is valid
+     */
+    private boolean checkName(String name) {
+        if (name == null || name.isEmpty()) {
+            mNameEditText.requestFocus();
+            Toast.makeText(getActivity(), "Please enter your name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     /**
      * This method increments the score if the answer to the question is correct
      */
     private void scoreQuestionOverlockerThreads() {
-        boolean result = overlockerThreadsAnswerView.getText().equals(overlockerThreadsCorrectAnswer);
-        grade(result, overlockerThreadsQuestionView);
+        boolean result = mOverlockerThreadsAnswerView.getText().equals(OVERLOCKER_THREADS_CORRECT_ANSWER);
+        grade(result, mOverlockerThreadsQuestionView);
     }
 
     /**
      * This method increments the score if the answer to the question is correct
      */
     private void scoreQuestionBasting() {
-        boolean result = bastingCorrectAnswer.isChecked();
-        grade(result, bastingQuestionView);
+        boolean result = mBastingCorrectAnswer.isChecked();
+        grade(result, mBastingQuestionView);
     }
 
     /**
      * This method increments the score if the answer to the question is correct
      */
     private void scoreQuestionElectricMachine() {
-        boolean result = mElectricMachineEditText.getText().toString().toLowerCase().contains(electricMachineCorrectAnswer);
-        grade(result, electricMachineQuestionView);
+        boolean result = mElectricMachineEditText.getText().toString().toLowerCase().contains(ELECTRIC_MACHINE_CORRECT_ANSWER);
+        grade(result, mElectricMachineQuestionView);
     }
 
     /**
      * This method increments the score if the answer to the question is correct
      */
     private void scoreQuestionNeedleEye() {
-        boolean result = needleEyeAnswer.isChecked();
-        grade(result, needleEyeQuestion);
+        boolean result = mNeedleEyeAnswer.isChecked();
+        grade(result, mNeedleEyeQuestion);
     }
 
     /**
      * This method increments the score if the answer to the question is correct
      */
     private void scoreQuestionTimGunn() {
-        boolean result = mTimGunnEditText.getText().toString().toLowerCase().contains(timGunnCorrectAnswer);
-        grade(result, timGunnQuestionView);
+        boolean result = mTimGunnEditText.getText().toString().toLowerCase().contains(TIM_GUNN_CORRECT_ANSWER);
+        grade(result, mTimGunnQuestionView);
     }
 
     /**
@@ -326,31 +352,31 @@ public class QuizFragment extends Fragment {
      */
     private void scoreQuestionTreadle() {
         String treadleTextAnswer = mTreadleEditText.getText().toString().toLowerCase();
-        boolean result = treadleTextAnswer.contains(treadleCorrectAnswer) || treadleTextAnswer.contains("treddle");
-        grade(result, treadleQuestionView);
+        boolean result = treadleTextAnswer.contains(TREADLE_CORRECT_ANSWER) || treadleTextAnswer.contains("treddle");
+        grade(result, mTreadleQuestionView);
     }
 
     /**
      * This method increments the score if the answer to the question is correct
      */
     private void scoreQuestionBig4() {
-        Boolean allRightAnswers = simplicity.isChecked() &&
-                vogue.isChecked() &&
-                butterick.isChecked() &&
-                mccalls.isChecked();
-        Boolean anyWrongAnswers = burdastyle.isChecked() ||
-                kwiksew.isChecked() ||
-                burda.isChecked() ||
-                newlook.isChecked();
+        Boolean allRightAnswers = mSimplicity.isChecked() &&
+                mVogue.isChecked() &&
+                mButterick.isChecked() &&
+                mMccalls.isChecked();
+        Boolean anyWrongAnswers = mBurdastyle.isChecked() ||
+                mKwiksew.isChecked() ||
+                mBurda.isChecked() ||
+                mNewlook.isChecked();
         boolean result = allRightAnswers && !anyWrongAnswers;
-        grade(result, big4QuestionView);
+        grade(result, mBig4QuestionView);
     }
 
     /**
      * This method updates the displayed needle count
      */
     private void displayNeedleCount() {
-        overlockerThreadsAnswerView.setText(String.valueOf(needle_count));
+        mOverlockerThreadsAnswerView.setText(String.valueOf(needle_count));
     }
 
     /**

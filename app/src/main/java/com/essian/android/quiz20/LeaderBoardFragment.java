@@ -26,18 +26,31 @@ import database.ScoreDbHelper;
  */
 public class LeaderBoardFragment extends Fragment {
 
-    ViewGroup parent;
+    ViewGroup mScoreTable;
 
     public LeaderBoardFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Creates fragment
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
+    /**
+     * Creates view for fragment
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,26 +65,33 @@ public class LeaderBoardFragment extends Fragment {
             }
         });
 
-        parent = (ViewGroup) v.findViewById(R.id.score_table);
+        mScoreTable = (ViewGroup) v.findViewById(R.id.score_table);
         return v;
     }
 
+    /**
+     * Adds high scores table to fragement when fragment is resumed
+     */
     @Override
     public void onResume() {
         super.onResume();
-        View v = getView();
-        drawTable(v);
+        drawTable();
     }
 
+    /**
+     * Removes high scores table from fragment to prevent it
+     * from being displayed twice when back button is pressed
+     */
     @Override
     public void onStop() {
         super.onStop();
-        View v = getView();
-        parent.removeAllViews();
-
+        mScoreTable.removeAllViews();
     }
 
-    private void drawTable(View v) {
+    /**
+     * Gets top three scores from db and displays them in high scores table
+     */
+    private void drawTable() {
 
         TableLayout tl = new TableLayout(getContext());
         try {
@@ -106,11 +126,11 @@ public class LeaderBoardFragment extends Fragment {
         }
 
         if (tl.getChildCount() > 0) {
-            parent.addView(tl);
+            mScoreTable.addView(tl);
         } else {
             TextView noScores = new TextView(getActivity(), null, R.attr.infoTextStyle);
             noScores.setText(R.string.no_high_scores);
-            parent.addView(noScores);
+            mScoreTable.addView(noScores);
         }
     }
 

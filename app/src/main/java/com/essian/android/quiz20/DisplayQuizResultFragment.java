@@ -22,6 +22,12 @@ public class DisplayQuizResultFragment extends DialogFragment {
     private static final String ARG_SCORE = "score";
     private static final String ARG_NAME = "name";
 
+    /**
+     * Allows fragment to be created with args from the QuizFragment
+     * @param score score integer
+     * @param name user's name string
+     * @return a fragment with the user's name and score stored in a Bundle
+     */
     public static DisplayQuizResultFragment newInstance(int score, String name) {
         Bundle args = new Bundle();
         args.putString(ARG_NAME, name);
@@ -32,9 +38,11 @@ public class DisplayQuizResultFragment extends DialogFragment {
         return fragment;
     }
 
-
-
-
+    /**
+     * Creates dialog and sets onClickListener to save score in db if required
+     * @param savedInstanceState
+     * @return AlertDialog object
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
