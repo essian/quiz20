@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Quiz 2.0</string>
+    <string name="app_name">The Sewing Quiz</string>
 
     <!-- Titles -->
-    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="title_activity_quiz">Take the quiz</string>
     <string name="title">The Sewing Quiz</string>
     <string name="sub_title">There are 7 questions. Good Luck!</string>
 
@@ -50,11 +50,13 @@
     <!--Dialog Text-->
     <string name="save">Save</string>
     <string name="retry">Retry</string>
+    <string name="score_message">Well done %1$s! You scored %2$s %3$s. \n\nDo you want to save your score or retry and change your answers?</string>
 
     <!--Leaderboard Text-->
     <string name="no_high_scores">There are no high scores yet</string>
     <string name="database_unavailable">Database unavailable</string>
     <string name="electric_machine_answer">singer</string>
+    <string name="result_fragment_title">Your score</string>
 
     <!--Plurals-->
     <plurals name="point">
